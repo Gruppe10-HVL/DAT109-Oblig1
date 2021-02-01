@@ -10,7 +10,9 @@ import org.junit.jupiter.api.Test;
 import no.hvl.dat109.entities.Board;
 import no.hvl.dat109.entities.Dice;
 import no.hvl.dat109.entities.Piece;
+import no.hvl.dat109.entities.Player;
 import no.hvl.dat109.entities.Square;
+import no.hvl.dat109.game.Game;
 
 class GameTest {
 	
@@ -19,21 +21,25 @@ class GameTest {
 	Piece piece;
 	private Dice die;
 	
-	private final int BOARD_SIZE = 100;
-	
+	private final int GRID_SIZE = 100;
+	private final Player player = new Player("Henrik");
+
 	@BeforeEach
 	public void setup() {
 		board = new Board();
+		player.setPiece(new Piece("", board));
 		grid = board.getGrid();
-		piece = new Piece("Black", board);
+		piece = new Piece("", board);
 		die = new Dice(6);
 	}
-	
+
 	@Test
 	public void checkBoardGridSquares() {
-		assertEquals(BOARD_SIZE, grid.size());
+		assertEquals(GRID_SIZE, grid.size());
 	}
 	
+
+
 	@Test
 	public void checkBoardSnakes() {
 		assertEquals(6, grid.get(16).getMapping());
@@ -63,7 +69,13 @@ class GameTest {
 	public void checkPieceStartingPosition() {
 		assertEquals(1, piece.getSquare().getNumber());
 	}
-	
+
+	@Test
+	public void playerDoesMove() {
+		player.doMove(die);
+		assertFalse(player.getPiece().getSquare().getNumber() == 1);
+	}
+
 	@Test
 	public void checkIfPieceMoved() {
 		piece.move(6);
@@ -74,6 +86,15 @@ class GameTest {
 		
 		piece.move(4);
 		assertEquals(14, piece.getSquare().getNumber());
+	}
+
+	@Test
+	public void checkIfPieceMovedNewPosition() {
+		piece.moveToPosition(35);
+		assertEquals(35, piece.getSquare().getNumber());
+
+		piece.moveToPosition(12);
+		assertEquals(12, piece.getSquare().getNumber());
 	}
 	
 	@Test

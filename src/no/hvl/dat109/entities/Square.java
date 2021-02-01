@@ -21,9 +21,13 @@ public abstract class Square {
         this.number = number;
     }
 
-    public abstract int getMapping();
+    public int getMapping() {
+        return number;
+    };
 
-    public abstract void setMapping(int mapping);
+    public void setMapping(int mapping) {
+        this.number = mapping;
+    };
 
     public abstract String toString();
 

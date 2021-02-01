@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Board {
 
-	private final int MAX_GRID_SQUARES = 100;
+	private final int GRID_SIZE = 100;
 	private Map<Integer, Square> board;
 
 	/**
@@ -14,7 +14,7 @@ public class Board {
 	public Board() {
 		board = new HashMap<>();
 
-		for (int i = 0; i < MAX_GRID_SQUARES; i++) {
+		for (int i = 0; i < GRID_SIZE; i++) {
 			board.put(i + 1, new RegularSquare(i + 1));
 		}
 
@@ -50,16 +50,5 @@ public class Board {
 		board.put(71, new LadderSquare(71, 91));
 		board.put(80, new LadderSquare(80, 100));
 	}
-	
-	/**
-	 * Get new square after die roll.
-	 * @param current current square
-	 * @param roll die roll
-	 * @return new square
-	 */
-	public Square getNewSquare(Square current, int roll) {
-		int position = current.getNumber();
-		int newPosition = position + roll;
-		return board.get(newPosition);
-	}
 }
+

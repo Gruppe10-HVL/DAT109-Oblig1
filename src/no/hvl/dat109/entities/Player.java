@@ -49,7 +49,7 @@ public class Player {
 			System.out.printf("[%s] rolled %d | MOVE %d -> %d\n", name.toUpperCase(), dieRoll, (piece.getSquare().getNumber() - dieRoll),
 					(piece.getSquare().getNumber()));
 			
-			if (piece.getSquare() instanceof LadderSquare || piece.getSquare() instanceof SnakeSquare) {
+			if (!(piece.getSquare() instanceof RegularSquare)) {
 				int newPosition = piece.getSquare().getMapping();
 				System.out.printf("%d is a %s! MOVE %d -> %d\n", piece.getSquare().getNumber(), 
 						(piece.getSquare().toString()), 

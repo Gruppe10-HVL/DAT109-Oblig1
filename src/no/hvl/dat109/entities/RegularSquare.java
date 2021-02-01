@@ -7,16 +7,6 @@ public class RegularSquare extends Square{
 	}
 	
 	@Override
-	public int getMapping() {
-		return number;
-	}
-
-	@Override
-	public void setMapping(int number) {
-		this.number = number;
-	}
-
-	@Override
 	public String toString() {
 		return "regular square";
 	}
